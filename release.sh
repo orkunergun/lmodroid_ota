@@ -12,16 +12,16 @@ SDK_LEVEL=$(echo "$METADATA" | grep post-sdk-level | cut -f2 -d '=')
 TIMESTAMP=$(echo "$METADATA" | grep post-timestamp | cut -f2 -d '=')
 
 FILENAME=$(basename $ROM)
-DEVICE=$(echo $FILENAME | cut -f5 -d '-' | cut -f1 -d".")
+DEVICE=lancelot
 ROMTYPE=$(echo $FILENAME | cut -f4 -d '-')
 DATE=$(echo $FILENAME | cut -f3 -d '-')
 ID=$(echo ${TIMESTAMP}${DEVICE}${SDK_LEVEL} | sha256sum | cut -f 1 -d ' ')
 SIZE=$(du -b $ROM | cut -f1 -d '	')
 TYPE=$(echo $FILENAME | cut -f4 -d '-')
 VERSION=$(echo $FILENAME | cut -f2 -d '-')
-RELASE_TAG=${DEVICE}_lineage-${VERSION}_${TIMESTAMP}
+RELASE_TAG=${DEVICE}_lmodroid-${VERSION}_${TIMESTAMP}
 
-URL="https://github.com/ivanmeler/ota_provider/releases/download/${RELASE_TAG}/${FILENAME}"
+URL="https://drive.orkunergun.eu.org/api/raw/?path=/LMODroid/lancelot/${FILENAME}"
 
 response=$(jq -n --arg datetime $TIMESTAMP \
         --arg filename $FILENAME \
